@@ -9,12 +9,12 @@
 //   );
 // }
 
-import { useSession, signIn, signOut } from "next-auth/react"
+import { useSession, signOut } from "next-auth/react"
 import { useRouter } from "next/navigation"
 
 export default function Home() {
   const router = useRouter()
-  const { data: session } = useSession()
+  const { data: session, status } = useSession()
 
   if (session) {
     return (
@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <>
       Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
+      <button onClick={() => router.push("/login")}>Sign in</button>
       <br />or<br />
       <button onClick={() => router.push("/signup")}>Register</button>
     </>

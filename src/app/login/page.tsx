@@ -1,9 +1,11 @@
 "use client"
 import React, { useState } from 'react'
 import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
-function RegisterPage() {
+function LoginPage() {
 
+    const router = useRouter()
 
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         try {
@@ -12,24 +14,22 @@ function RegisterPage() {
             const payload = {
                 name: formData.get('name'),
                 email: formData.get('email'),
-                password: formData.get('password'),
-                // addresses: [formData.get('address')]
+                password: formData.get('password')
             }
             
-            let res = await fetch("/api/register", { body: JSON.stringify(payload), method: "POST", headers: { "Content-Type": "application/json" }})
-            res = await res.json()
-
-            await signIn("credentials", {
+            const res = await signIn('credentials', {
                 username: payload.email as string,
                 password: payload.password as string,
                 callbackUrl: '/userDashboard',
-                redirect: true
+                redirect: false
             })
-            
-            // make an autologin logic or redirect to login page 
+    
+            if(res?.error) console.log("login error", res.error)
+            else router.push('/userDashboard')
         } catch (error) {
-            console.log("Error on sign up process -> ", error)
+            console.log("Error en login page ->", error)
         }
+
     }
 
 
@@ -37,14 +37,10 @@ function RegisterPage() {
     <div>
         <form onSubmit={handleSubmit} className='flex justify-center mt-64'>
             <div className='flex flex-col w-4/5 lg:w-1/4'>
-                <label htmlFor="name">Name</label>
-                <input name={"name"} type="text" className='border border-gray-800' />
                 <label htmlFor="email">Email</label>
                 <input name={"email"} type="email" className='border border-gray-800' />
                 <label htmlFor="password">Password</label>
                 <input name={"password"} type="password" className='border border-gray-800' />
-                {/* <label htmlFor="address">Address</label>
-                <input name={"address"} type="text" className='border border-gray-800' /> */}
                 <button>Submit</button>
             </div>
         </form>
@@ -52,4 +48,4 @@ function RegisterPage() {
   )
 }
 
-export default RegisterPage
+export default LoginPage
