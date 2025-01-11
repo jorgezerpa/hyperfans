@@ -1,23 +1,35 @@
 "use client"
 import React, { useState } from 'react'
+import { signIn } from 'next-auth/react'
 
 function RegisterPage() {
 
 
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        const formData = new FormData(e.currentTarget)
-        const payload = {
-            name: formData.get('name'),
-            email: formData.get('email'),
-            password: formData.get('password'),
-            // addresses: [formData.get('address')]
+        try {
+            e.preventDefault()
+            const formData = new FormData(e.currentTarget)
+            const payload = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                password: formData.get('password'),
+                // addresses: [formData.get('address')]
+            }
+            
+            let res = await fetch("/api/register", { body: JSON.stringify(payload), method: "POST", headers: { "Content-Type": "application/json" }})
+            res = await res.json()
+
+            await signIn("credentials", {
+                username: payload.email as string,
+                password: payload.password as string,
+                callbackUrl: '/',
+                redirect: true
+            })
+            
+            // make an autologin logic or redirect to login page 
+        } catch (error) {
+            console.log("Error on sign up process -> ", error)
         }
-        
-        let res = await fetch("/api/register", { body: JSON.stringify(payload), method: "POST", headers: { "Content-Type": "application/json" }})
-        res = await res.json()
-        console.log(res)
-        // make an autologin logic or redirect to login page 
     }
 
 
