@@ -8,13 +8,14 @@ export function Providers({children}: {children: React.ReactNode}) {
   const router = useRouter()
   const { data: session, status } = useSession()
 
-  useEffect(()=>{
-    // if is auth
-    if(status==="authenticated"){}
-    if(status==="unauthenticated"){
-      router.push("/")
-    }
-  }, [status])
+  // this is taking me out on every refresh, why?????
+  // useEffect(()=>{
+  //   // if is auth
+  //   if(status==="authenticated"){}
+  //   if(status==="unauthenticated"){
+  //     router.push("/")
+  //   }
+  // }, [session])
   
   return (
     <div>
