@@ -6,17 +6,12 @@ import {
   StreamVideoClient,
   User,
 } from "@stream-io/video-react-sdk";
+import { useSearchParams } from "next/navigation";
 
 const apiKey = "tqag879npxda"; //never change 
-// const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJAc3RyZWFtLWlvL2Rhc2hib2FyZCIsImlhdCI6MTczNjYwNzc0MCwiZXhwIjoxNzM2Njk0MTQwLCJ1c2VyX2lkIjoiIWFub24iLCJyb2xlIjoidmlld2VyIiwiY2FsbF9jaWRzIjpbImxpdmVzdHJlYW06bGl2ZXN0cmVhbV8xMzQ3ZWM1Yy0xNGU4LTRkNDctODdkOC1iYmRlOWE3YjhkMGMiXX0.IGDs8daHV5rBASuSOpm8GgaZ-tU2aUr8ARE5m5ErUdQ";
-// const callId = "livestream_1347ec5c-14e8-4d47-87d8-bbde9a7b8d0c";
-// const callId = "livestream_19805d8b-7626-41ab-9136-7b15ba52b9b6";
-// const callId = "livestream_39e96917-f8a2-4641-8f5c-f496ba486a2a";
-// const callId = "livestream_04ea6d20-a07d-47f6-b3a2-ae357d97f0a4";
-// const callId = "livestream_be7b719b-dac4-42a7-8941-b83a309b02e6";
-const callId = "livestream_b70792ff-ed2f-4375-8171-d600367d7a99";
 
 export default function App() {
+  const params = useSearchParams()
 
   const [token, setToken] = useState("")
   const [user, setUser] = useState<null|User>(null)
@@ -39,6 +34,8 @@ export default function App() {
     const data = await response.json();
     return data.token;
   };
+
+  let callId = params.get("livestream-id") as string
 
 
   return (
