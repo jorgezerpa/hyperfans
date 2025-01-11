@@ -1,4 +1,5 @@
 "use client"
+import React, { useEffect, useState } from "react";
 import {
   LivestreamPlayer,
   StreamVideo,
@@ -6,18 +7,49 @@ import {
   User,
 } from "@stream-io/video-react-sdk";
 
-const apiKey = "tqag879npxda";
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJAc3RyZWFtLWlvL2Rhc2hib2FyZCIsImlhdCI6MTczNjYwNzc0MCwiZXhwIjoxNzM2Njk0MTQwLCJ1c2VyX2lkIjoiIWFub24iLCJyb2xlIjoidmlld2VyIiwiY2FsbF9jaWRzIjpbImxpdmVzdHJlYW06bGl2ZXN0cmVhbV8xMzQ3ZWM1Yy0xNGU4LTRkNDctODdkOC1iYmRlOWE3YjhkMGMiXX0.IGDs8daHV5rBASuSOpm8GgaZ-tU2aUr8ARE5m5ErUdQ";
-const callId = "livestream_1347ec5c-14e8-4d47-87d8-bbde9a7b8d0c";
-
-const user: User = { type: "anonymous" };
-const client = new StreamVideoClient({ apiKey, user, token });
+const apiKey = "tqag879npxda"; //never change 
+// const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJAc3RyZWFtLWlvL2Rhc2hib2FyZCIsImlhdCI6MTczNjYwNzc0MCwiZXhwIjoxNzM2Njk0MTQwLCJ1c2VyX2lkIjoiIWFub24iLCJyb2xlIjoidmlld2VyIiwiY2FsbF9jaWRzIjpbImxpdmVzdHJlYW06bGl2ZXN0cmVhbV8xMzQ3ZWM1Yy0xNGU4LTRkNDctODdkOC1iYmRlOWE3YjhkMGMiXX0.IGDs8daHV5rBASuSOpm8GgaZ-tU2aUr8ARE5m5ErUdQ";
+// const callId = "livestream_1347ec5c-14e8-4d47-87d8-bbde9a7b8d0c";
+// const callId = "livestream_19805d8b-7626-41ab-9136-7b15ba52b9b6";
+// const callId = "livestream_39e96917-f8a2-4641-8f5c-f496ba486a2a";
+// const callId = "livestream_04ea6d20-a07d-47f6-b3a2-ae357d97f0a4";
+const callId = "livestream_be7b719b-dac4-42a7-8941-b83a309b02e6";
 
 export default function App() {
+
+  const [token, setToken] = useState("")
+  const [user, setUser] = useState<null|User>(null)
+  const [client, setClient] = useState<null|StreamVideoClient>(null)
+
+  useEffect(()=>{
+    (async()=>{
+      const token = await tokenProvider()
+      // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJAc3RyZWFtLWlvL2Rhc2hib2FyZCIsImlhdCI6MTczNjYxMDE0OCwiZXhwIjoxNzM2Njk2NTQ4LCJ1c2VyX2lkIjoiIWFub24iLCJyb2xlIjoidmlld2VyIiwiY2FsbF9jaWRzIjpbImxpdmVzdHJlYW06bGl2ZXN0cmVhbV8xOTgwNWQ4Yi03NjI2LTQxYWItOTEzNi03YjE1YmE1MmI5YjYiXX0.tea9-oFxpjv2eB-yps-k57tKmr45NxJ7xmToDlrSmDo"
+      setToken(token)
+      const new_user: User = { type: "anonymous" };
+      const new_client = new StreamVideoClient({ apiKey, user:new_user, token });
+      setUser(new_user)
+      setClient(new_client)
+    })()
+  },[])
+
+  const tokenProvider = async () => {
+    const response = await fetch("/api/stream/token");
+    const data = await response.json();
+    return data.token;
+  };
+
+
   return (
-    <StreamVideo client={client}>
-      <LivestreamPlayer callType="livestream" callId={callId} />
-    </StreamVideo>
+    <div>
+      token
+      {
+        (user && client) &&
+          <StreamVideo client={client} >
+            <LivestreamPlayer callType="livestream" callId={callId} />
+          </StreamVideo>
+      } 
+    </div>
   );
 }
 
