@@ -13,10 +13,13 @@ function Sidebar() {
     >
 
         <div>
-            <Link href="/">Initial</Link>
+            <Link href="/userDashboard/streams">Streams</Link>
         </div>
         <div>
-            <Link href="/dashboard">Dashboard</Link>
+            <Link href="/userDashboard/billing">Billing</Link>
+        </div>
+        <div>
+            <Link href="/userDashboard/profile">Profile</Link>
         </div>
        
         <div onClick={async()=>await signOut({ callbackUrl:"/" })}>
