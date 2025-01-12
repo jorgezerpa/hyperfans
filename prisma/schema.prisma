@@ -18,6 +18,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   addresses     String[]
   birthday      String?
+  role          String   @default("user")
 }
 
 model Call {

@@ -35,6 +35,7 @@ const handler = NextAuth({
               id: user.id.toString(), 
               name: user.name,
               email: user.email,
+              role: user.role,
             };
       
             // const user = { id: "1", name: "J Smith", email: "jsmith@example.com" }
