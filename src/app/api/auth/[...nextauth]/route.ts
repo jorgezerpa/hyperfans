@@ -4,6 +4,10 @@ import { prisma } from "../../../../../lib/prisma";
 import bcrypt from "bcrypt"
 
 const handler = NextAuth({
+    pages: {
+      signIn: "/login",
+      newUser: "/signup"
+    },
     providers: [
         CredentialsProvider({
           name: "Credentials",

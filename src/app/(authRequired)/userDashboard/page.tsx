@@ -18,7 +18,7 @@ export default function Home() {
 
   return (
     <div>
-        Hola
+        Hola tu: 
         {
           session?.user?.name
         }
