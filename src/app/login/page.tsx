@@ -1,11 +1,13 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 
 function LoginPage() {
 
     const router = useRouter()
+    const { data:session } = useSession()
 
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         try {
@@ -25,12 +27,16 @@ function LoginPage() {
             })
     
             if(res?.error) console.log("login error", res.error)
-            else router.push('/userDashboard')
         } catch (error) {
             console.log("Error en login page ->", error)
         }
-
     }
+
+    useEffect(()=>{
+        if(session && session.user) {
+            router.push(session.user.role==="admin" ? 'dashboard' : '/userDashboard')
+        }
+    }, [session])
 
 
   return (
