@@ -7,7 +7,7 @@ import "@stream-io/video-react-sdk/dist/css/styles.css";
 
 export function Providers({children}: {children: React.ReactNode}) {
   return (
-    <SessionProvider>
+    <SessionProvider >
       <StreamTheme 
       // style={{ fontFamily: 'sans-serif', color: 'white' }}
       >

@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { Sidebar } from "@/components/Sidebar";
+import { Providers } from "./Providers";
 
 export default function RootLayout({
   children,
@@ -8,15 +9,17 @@ export default function RootLayout({
 }>) {
   return (
     <div>
-        <Navbar />
-        <div className="flex justify-start items-start">
-            <div className="h-screen w-[200px]">
-                <Sidebar isAdmin />
-            </div>
-            <div className="h-screen w-full">
-                { children }
-            </div>
-        </div>
+          <Navbar />
+          <div className="flex justify-start items-start">
+              <div className="h-screen w-[200px]">
+                  <Sidebar isAdmin />
+              </div>
+              <div className="h-screen w-full">
+                <Providers>
+                  { children }
+                </Providers>
+              </div>
+          </div>
     </div>
   );
 }
