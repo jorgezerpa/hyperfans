@@ -8,8 +8,8 @@ declare global {
   var prisma: undefined | ReturnType<typeof prismaClientSingleton>
 }
 
-const prisma = globalThis.prisma ?? prismaClientSingleton() //DEV (to hot reloading)
-// const prisma = prismaClientSingleton() //PROD
+// const prisma = globalThis.prisma ?? prismaClientSingleton() //DEV (to hot reloading)
+const prisma = prismaClientSingleton() //PROD
 
 export {prisma}
 
