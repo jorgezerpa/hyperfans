@@ -1,13 +1,10 @@
 "use client"
-import React, { useState } from 'react'
-import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+import React from 'react'
 
 import axios from 'axios'
 
 function ShareLiveStreamPage() {
 
-    const router = useRouter()
 
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         try {
@@ -17,7 +14,7 @@ function ShareLiveStreamPage() {
                 call_id: formData.get('id'),
             }
             
-            const res = await axios.post("/api/stream/call/get_calls", payload)
+            await axios.post("/api/stream/call/get_calls", payload)
             console.log("done")
         } catch (error) {
             console.log("Error en login page ->", error)

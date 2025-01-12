@@ -1,11 +1,9 @@
 "use client"
 import React from 'react'
 import Link from 'next/link'
-import { signIn, signOut } from 'next-auth/react'
-import { useSession } from 'next-auth/react' 
+import { signOut } from 'next-auth/react'
 
 function Sidebar({ isAdmin }:{ isAdmin?:boolean }) {
-    const { data: session, status } = useSession()
 
   return (
     <>

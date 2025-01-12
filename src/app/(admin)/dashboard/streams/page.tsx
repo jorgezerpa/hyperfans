@@ -12,7 +12,7 @@ export default function Streams() {
           callId: data.stream_id,
           state: "active"
       }
-      const res = await axios.post("/api/stream/call/create_call", payload)
+      await axios.post("/api/stream/call/create_call", payload)
 
       const sortedCalls = await getCalls()
 
@@ -26,7 +26,7 @@ export default function Streams() {
 
   async function updateStreamState(id: string, state: "active"|"finished"){
     try {
-      const res = await axios.put("/api/stream/call/update_call", {id,state})
+      await axios.put("/api/stream/call/update_call", {id,state})
 
       const sortedCalls = await getCalls()
 

@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server"
 import {prisma} from "../../../../../../lib/prisma"
 
-export async function POST (req: Request, res: Response) {
+export async function POST (req: Request) {
     const { callId, state } = await req.json()
 
-    const response = await prisma.call.create({
+    await prisma.call.create({
         data: {
             state: state||"active",
             callId: callId // livestream id

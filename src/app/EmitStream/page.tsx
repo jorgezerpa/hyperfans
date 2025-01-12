@@ -57,7 +57,7 @@ const LivestreamView = () => {
       {firstParticipant ? (
         <ParticipantView participant={firstParticipant} />
       ) : (
-        <div>The host hasn't joined yet</div>
+        <div>The host hasn&apos;t joined yet</div>
       )}
       <div style={{ display: 'flex', gap: '4px'}}>
         <button onClick={() => (isLive ? call.stopLive() : call.goLive())}>

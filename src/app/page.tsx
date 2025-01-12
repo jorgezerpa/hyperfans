@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation"
 
 export default function Home() {
   const router = useRouter()
-  const { data: session, status } = useSession()
+  const { data: session } = useSession()
 
   if (session) {
     return (

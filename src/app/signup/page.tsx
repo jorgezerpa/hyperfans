@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React from 'react'
 import { signIn } from 'next-auth/react'
 
 function RegisterPage() {
@@ -16,8 +16,7 @@ function RegisterPage() {
                 // addresses: [formData.get('address')]
             }
             
-            let res = await fetch("/api/register", { body: JSON.stringify(payload), method: "POST", headers: { "Content-Type": "application/json" }})
-            res = await res.json()
+            await fetch("/api/register", { body: JSON.stringify(payload), method: "POST", headers: { "Content-Type": "application/json" }})
 
             await signIn("credentials", {
                 username: payload.email as string,

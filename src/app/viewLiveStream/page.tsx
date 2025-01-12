@@ -13,7 +13,7 @@ const apiKey = "tqag879npxda"; //never change
 export default function App() {
   const params = useSearchParams()
 
-  const [token, setToken] = useState("")
+  const [, setToken] = useState("")
   const [user, setUser] = useState<null|User>(null)
   const [client, setClient] = useState<null|StreamVideoClient>(null)
 
@@ -35,7 +35,7 @@ export default function App() {
     return data.token;
   };
 
-  let callId = params.get("livestream-id") as string
+  const callId = params.get("livestream-id") as string
 
 
   return (

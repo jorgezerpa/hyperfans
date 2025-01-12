@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 import {prisma} from "../../../../lib/prisma"
 import bcrypt from "bcrypt"
 
-export async function POST (req: Request, res: Response) {
+export async function POST (req: Request) {
     const data = await req.json() 
 
     const userFound = await prisma.user.findUnique({

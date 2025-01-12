@@ -1,22 +1,12 @@
 "use client"
-import React, { useEffect } from 'react'
-import { useSession, signIn, signOut } from "next-auth/react"
-import { useRouter } from "next/navigation"
+import React from 'react'
+import { useSession } from "next-auth/react"
 
 export function Providers({children}: {children: React.ReactNode}) {
 
-  const router = useRouter()
-  const { data: session, status } = useSession()
+  const { status } = useSession()
 
-  // this is taking me out on every refresh, why?????
-  // useEffect(()=>{
-  //   // if is auth
-  //   if(status==="authenticated"){}
-  //   if(status==="unauthenticated"){
-  //     router.push("/")
-  //   }
-  // }, [session])
-  
+
   return (
     <div>
       {

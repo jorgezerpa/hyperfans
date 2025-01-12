@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server"
 import {prisma} from "../../../../../../lib/prisma"
 
-export async function PUT (req: Request, res: Response) {
+export async function PUT (req: Request) {
     const { id, state } = await req.json()
 
-    const response = await prisma.call.update({
+    await prisma.call.update({
         where: { id: id },
         data: { state: state }
     })
