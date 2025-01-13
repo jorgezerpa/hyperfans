@@ -3,29 +3,26 @@
 import React from 'react'
 import { SessionProvider } from 'next-auth/react' 
 import { StreamTheme } from '@stream-io/video-react-sdk'
-import { MetaMaskProvider } from "@metamask/sdk-react"
+import { WagmiProvider } from 'wagmi'
+import { config as wagmiConfig} from '@/config/wagmi'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import "@stream-io/video-react-sdk/dist/css/styles.css";
 
+const queryClient = new QueryClient()
+
 export function Providers({children}: {children: React.ReactNode}) {
   return (
-    <MetaMaskProvider
-      sdkOptions={{
-        dappMetadata: {
-          name: "Stream app",
-          // url: window.location.href,
-        },
-        infuraAPIKey: process.env.INFURA_API_KEY,
-        // Other options.
-      }}
-    >
-      <SessionProvider>
-        <StreamTheme 
-        // style={{ fontFamily: 'sans-serif', color: 'white' }}
-        >
-          {children}
-        </StreamTheme>
-      </SessionProvider>
-    </MetaMaskProvider>
+    <WagmiProvider config={wagmiConfig}>
+      <QueryClientProvider client={queryClient}>
+          <SessionProvider>
+            <StreamTheme 
+            // style={{ fontFamily: 'sans-serif', color: 'white' }}
+            >
+              {children}
+            </StreamTheme>
+          </SessionProvider>
+      </QueryClientProvider>
+    </WagmiProvider>
   )
 }

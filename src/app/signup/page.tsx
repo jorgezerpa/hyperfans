@@ -1,23 +1,12 @@
 "use client"
-import React, { useState } from 'react'
+import React from 'react'
 import { signIn } from 'next-auth/react'
-import { useSDK } from "@metamask/sdk-react";
+import { ConnectToMetamask } from "@/components/web3/Connectors"
+import { useAccount } from 'wagmi'
 
 function RegisterPage() {
 
-    const { sdk
-        // connected, connecting, provider, chainId
-     } = useSDK();
-    const [account, setAccount] = useState<string>();
-
-    const connect = async () => {
-        try {
-          const accounts = await sdk?.connect();
-          setAccount(accounts?.[0]);
-        } catch (err) {
-          console.warn("failed to connect..", err);
-        }
-    };
+    const { address } = useAccount()
 
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         try {
@@ -27,10 +16,10 @@ function RegisterPage() {
                 name: formData.get('name'),
                 email: formData.get('email'),
                 password: formData.get('password'),
-                addresses: [account]
+                addresses: [address]
             }
 
-            if(!formData.get('name') || !formData.get('email') || !formData.get('password') || !account) {
+            if(!formData.get('name') || !formData.get('email') || !formData.get('password') || !address) {
                 return 
             }
             
@@ -49,10 +38,10 @@ function RegisterPage() {
         }
     }
 
-    const disconnect = async() => {
-        await sdk?.disconnect()
-        setAccount("")
-    }
+
+    const connect = async () => {
+       
+    };
 
 
   return (
@@ -67,13 +56,12 @@ function RegisterPage() {
                 <label className='mt-3 font-bold' htmlFor="password">Password</label>
                 <input name={"password"} type="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" />
 
-                <button type='button' onClick={account?disconnect:connect} className="mt-5 px-4 py-2 text-white bg-slate-700 rounded-lg hover:bg-purple-800 cursor-pointer my-2 ">{ account ? "connencted" : "Connect wallet" }</button>
-                
+                <ConnectToMetamask />
                 <p className='text-center'>
-                    {account && `${account}`}
+                    {address && `${address}`}
                 </p>
                 
-                <button disabled={!account} onClick={account?connect:()=>{}} className={`mt-5 px-4 py-2 text-white bg-purple-700 rounded-lg hover:bg-purple-800 ${!account&&"opacity-65"} ${account&&"cursor-pointer"}`}>Register</button>
+                <button disabled={!address} className={`mt-5 px-4 py-2 text-white bg-purple-700 rounded-lg hover:bg-purple-800 ${!address&&"opacity-65"} ${address&&"cursor-pointer"}`}>Register</button>
             </div>
         </form>
     </div>
