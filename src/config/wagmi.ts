@@ -5,7 +5,12 @@ import { injected, metaMask, safe, walletConnect } from 'wagmi/connectors'
 const projectId = '<WALLETCONNECT_PROJECT_ID>'
 
 export const config = createConfig({
-  chains: [mainnet, base, sepolia, optimism, arbitrum],
+  chains: [
+    mainnet, 
+    // base, 
+    sepolia, 
+    // optimism, arbitrum
+],
   connectors: [
     injected(),
     // walletConnect({ projectId }),
@@ -13,10 +18,11 @@ export const config = createConfig({
     // safe(),
   ],
   transports: {
-    [mainnet.id]: http(),
-    [base.id]: http(),
-    [sepolia.id]: http(),
-    [optimism.id]: http(),
-    [arbitrum.id]: http(),
+    [mainnet.id]: http("https://mainnet.infura.io/v3/b26a78bcb38b4957a68b3cdc645c2547"),
+    // [base.id]: http("https://mainnet.infura.io/v3/b26a78bcb38b4957a68b3cdc645c2547"),
+    [sepolia.id]: http("https://sepolia.infura.io/v3/b26a78bcb38b4957a68b3cdc645c2547"),
+    // [optimism.id]: http(),
+    // [arbitrum.id]: http(),
   },
+  
 })
