@@ -12,7 +12,7 @@ import { RiCloseLargeLine } from "react-icons/ri";
 
 function Sidebar({ isAdmin }:{ isAdmin?:boolean }) {
 
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+    const [windowWidth, setWindowWidth] = useState(0)
     const [showMenu, setShowMenu] = useState(false)
 
     useEffect(()=>{
