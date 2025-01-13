@@ -1,9 +1,23 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import { signIn } from 'next-auth/react'
+import { useSDK } from "@metamask/sdk-react";
 
 function RegisterPage() {
 
+    const { sdk
+        // connected, connecting, provider, chainId
+     } = useSDK();
+    const [account, setAccount] = useState<string>();
+
+    const connect = async () => {
+        try {
+          const accounts = await sdk?.connect();
+          setAccount(accounts?.[0]);
+        } catch (err) {
+          console.warn("failed to connect..", err);
+        }
+    };
 
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         try {
@@ -13,7 +27,11 @@ function RegisterPage() {
                 name: formData.get('name'),
                 email: formData.get('email'),
                 password: formData.get('password'),
-                // addresses: [formData.get('address')]
+                addresses: [account]
+            }
+
+            if(!formData.get('name') || !formData.get('email') || !formData.get('password') || !account) {
+                return 
             }
             
             await fetch("/api/register", { body: JSON.stringify(payload), method: "POST", headers: { "Content-Type": "application/json" }})
@@ -31,6 +49,11 @@ function RegisterPage() {
         }
     }
 
+    const disconnect = async() => {
+        await sdk?.disconnect()
+        setAccount("")
+    }
+
 
   return (
     <div>
@@ -43,9 +66,14 @@ function RegisterPage() {
                 <input name={"email"} type="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" />
                 <label className='mt-3 font-bold' htmlFor="password">Password</label>
                 <input name={"password"} type="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" />
-                {/* <label htmlFor="address">Address</label>
-                <input name={"address"} type="text" className='border border-gray-800' /> */}
-                <button className="mt-5 px-4 py-2 text-white bg-purple-700 rounded-lg hover:bg-purple-800 cursor-pointer">Submit</button>
+
+                <button type='button' onClick={account?disconnect:connect} className="mt-5 px-4 py-2 text-white bg-slate-700 rounded-lg hover:bg-purple-800 cursor-pointer my-2 ">{ account ? "connencted" : "Connect wallet" }</button>
+                
+                <p className='text-center'>
+                    {account && `${account}`}
+                </p>
+                
+                <button disabled={!account} onClick={account?connect:()=>{}} className={`mt-5 px-4 py-2 text-white bg-purple-700 rounded-lg hover:bg-purple-800 ${!account&&"opacity-65"} ${account&&"cursor-pointer"}`}>Register</button>
             </div>
         </form>
     </div>

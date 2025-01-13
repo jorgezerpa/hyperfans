@@ -1,8 +1,24 @@
 "use client"
-import React from 'react'
-import { signOut } from 'next-auth/react'
+import React, { useState } from 'react'
+import { useSDK } from "@metamask/sdk-react";
 
 function Navbar() {
+    const { sdk } = useSDK();
+    const [account, setAccount] = useState<string>();
+
+    const connect = async () => {
+        try {
+          const accounts = await sdk?.connect();
+          setAccount(accounts?.[0]);
+        } catch (err) {
+          console.warn("failed to connect..", err);
+        }
+    };
+
+    const disconnect = async() => {
+        await sdk?.disconnect()
+        setAccount("")
+    }
 
   return (
     <nav
@@ -20,8 +36,8 @@ function Navbar() {
             </div> */}
         </div>
         
-        <div className='bg-purple-700 text-white py-1 px-2 sm:py-2 sm:px-4 text-sm sm:text-base rounded-md cursor-pointer hover:bg-purple-600' onClick={async()=>await signOut({ callbackUrl:"/" })}>
-            Connect Wallet
+        <div onClick={account?disconnect:connect} className='bg-purple-700 text-white py-1 px-2 sm:py-2 sm:px-4 text-sm sm:text-base rounded-md cursor-pointer hover:bg-purple-600'>
+            {account?"disconnect":"connect"} Wallet
         </div>
     </nav>
   )
