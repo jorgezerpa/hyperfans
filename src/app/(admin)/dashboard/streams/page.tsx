@@ -78,7 +78,7 @@ export default function Streams() {
           const formData = new FormData(e.currentTarget)
           createStream({ stream_id: formData.get('stream-id') as string })
         }} 
-        className="flex items-center">
+        className="flex flex-col sm:flex-row gap-4 sm:gap-0 items-center">
         <h4 className="text-lg font-bold mr-2">New stream:</h4>
         <input name={"stream-id"} value={newCallId} onChange={(e)=>setNewCallId(e.target.value)} type="text" placeholder="id" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[200px] p-2.5" />
         <button className="px-4 py-2 text-white bg-purple-700 rounded-lg ml-2 hover:bg-purple-800 cursor-pointer">Share</button>
