@@ -9,12 +9,10 @@
 //   );
 // }
 
-import { useSession, signOut } from "next-auth/react"
 import { useRouter } from "next/navigation"
 
 export default function Home() {
   const router = useRouter()
-  const { data: session } = useSession()
 
   // if (session) {
   //   return (
