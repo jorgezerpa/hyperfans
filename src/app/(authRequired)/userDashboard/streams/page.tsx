@@ -37,28 +37,28 @@ export default function Streams() {
     },[])
 
     return (
-        <>
-            <h1 className="text-center pt-7 pb-7 font-bold text-2xl">Streams</h1>
+        <div className="px-5">
+            <h1 className="pt-7 pb-7 font-bold text-2xl">Streams</h1>
 
-            <div className="flex justify-center items-center py-24">
+            {/* <div className="flex items-center py-24">
                 <div onClick={()=>router.push(`/viewLiveStream?livestream-id=${calls[0]?.callId}`)} className="cursor-pointer text-center text-lg font-bold text-white px-4 py-2 bg-purple-700 rounded-sm">
-                    Join Stream { calls[0]?.callId }
+                    Join Actual Stream { calls[0]?.callId }
                 </div>
-            </div>
+            </div> */}
 
             <div>
-                <h4 className="mt-5 text-lg text-center font-bold mb-2">Previous streams</h4>
-                <div className="px-20">
+                {/* <h4 className="mt-5 text-lg text-center font-bold mb-2">Previous streams</h4> */}
+                <div className="">
                 {
                     calls.map((call, index) => {
                     return (
-                        <div key={"listofcallsforclientdashboardstreamsroute"+index} className="mb-4">
-                        <p>Call_id: { call.callId }</p>
-                        <p>state: { call.state }</p>
-                        {
-                            (index === 0) &&
-                            <button className="cursor-pointer" type="button" onClick={()=>router.push(`/viewLiveStream?livestream-id=${calls[0]?.callId}`)}>Join Stream</button>
-                        }
+                        <div key={"listofcallsformadmindashboard"+index} className="mb-8">
+                            <p><span className="font-bold">Call_id:</span> { call.callId }</p>
+                            <p><span className="font-bold">state:</span> <span className={`${(call.state==="active" && index===0)?"text-orange-500":"text-green-600"} font-bold`}>{ (call.state==="active" && index===0) ? "Active" : "finished" }</span></p>
+                            {
+                                (call.state === "active" && index===0) &&
+                                <button type="button" onClick={()=>{router.push(`/viewLiveStream?livestream-id=${calls[0]?.callId}`)}} className="mt-1 px-2 py-1 text-white bg-purple-700 rounded-md hover:bg-purple-800 cursor-pointer">JOIN STREAM</button>
+                            }
                         </div>
                     )
                     })
@@ -66,6 +66,6 @@ export default function Streams() {
                 </div>
             </div>
 
-        </>
+        </div>
     )
 }

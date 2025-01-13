@@ -14,7 +14,9 @@ export default function RootLayout({
                 <Sidebar />
             </div>
             <div className="h-screen w-full overflow-hidden pt-[80px]">
+              <div className="overflow-y-scroll h-full">
                 { children }
+              </div>
             </div>
         </div>
     </div>

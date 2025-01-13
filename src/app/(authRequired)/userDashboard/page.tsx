@@ -16,10 +16,10 @@ export default function Home() {
 
   return (
     <div>
-        Hi: 
+        {/* Hi: 
         {
           session?.user?.name
-        }
+        } */}
     </div>
   )
 }
