@@ -7,6 +7,7 @@ import {
   User,
 } from "@stream-io/video-react-sdk";
 import { useSearchParams } from "next/navigation";
+import axios from "axios";
 
 const apiKey = "tqag879npxda"; //never change 
 
@@ -30,8 +31,8 @@ export default function App() {
   },[])
 
   const tokenProvider = async () => {
-    const response = await fetch("/api/stream/token");
-    const data = await response.json();
+    const response = await axios.put("/api/stream/token");
+    const data = await response.data;
     return data.token;
   };
 

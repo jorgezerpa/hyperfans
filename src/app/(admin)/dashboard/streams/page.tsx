@@ -39,7 +39,7 @@ export default function Streams() {
   } 
 
   async function getCalls() {
-    const calls = await axios.get("/api/stream/call/get_calls")
+    const calls = await axios.put("/api/stream/call/get_calls")
 
     const sortedCalls = calls?.data?.calls?.sort((a:any, b:any) => {
       const dateA = new Date(a.createdAt);
