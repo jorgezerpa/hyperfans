@@ -3,7 +3,7 @@
 export default function Dashboard() {
   return (
     <>
-        admin dashboard
+        {/* admin dashboard */}
     </>
   )
 }

@@ -11,10 +11,10 @@ export default function RootLayout({
     <div>
           <Navbar />
           <div className="flex justify-start items-start">
-              <div className="h-screen w-[200px]">
+              <div className="h-screen pt-[80px]">
                   <Sidebar isAdmin />
               </div>
-              <div className="h-screen w-full">
+              <div className="h-screen w-full overflow-hidden pt-[80px]">
                 <Providers>
                   { children }
                 </Providers>
