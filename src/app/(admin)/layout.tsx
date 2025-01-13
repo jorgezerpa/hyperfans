@@ -8,7 +8,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>
+    <div className="overflow-x-hidden">
           <Navbar />
           <div className="flex justify-start items-start">
               <div className="h-screen pt-[80px]">
