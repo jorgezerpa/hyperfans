@@ -41,13 +41,23 @@ export default function App() {
 
   return (
     <div>
-      <div className="">
+      <div className="bg-gray-900 h-screen">
         {
           (user && client) &&
             <StreamVideo client={client} >
-              <LivestreamPlayer callType="livestream" callId={callId} layoutProps={{  }} />
+              <div className="flex justify-center pt-10">
+                <div className="w-[95%] md:w-[600px] min-h-[300px] bg-gray-300 rounded-xl overflow-hidden text-white">
+                  <LivestreamPlayer callType="livestream" callId={callId} layoutProps={{  }} />
+                </div>
+              </div>
             </StreamVideo>
         } 
+        <div className="flex justify-center pt-4">
+          <div className="w-[95%] md:w-[600px]">
+            {/* <h3 className="text-white text-2xl">Livestream</h3> */}
+          </div>
+          
+        </div>
       </div>
     </div>
   );
