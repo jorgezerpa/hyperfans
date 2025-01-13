@@ -13,7 +13,7 @@ export default function RootLayout({
             <div className="h-screen pt-[80px]">
                 <Sidebar />
             </div>
-            <div className="h-screen w-full pt-[80px]">
+            <div className="h-screen w-full overflow-hidden pt-[80px]">
                 { children }
             </div>
         </div>

@@ -5,6 +5,7 @@ import axios from "axios"
 export default function Streams() {
 
   const [calls, setCalls] = useState<any[]>([])
+  const [newCallId, setNewCallId] = useState("")
 
   async function createStream(data: { stream_id: string }){
     try {
@@ -17,6 +18,7 @@ export default function Streams() {
       const sortedCalls = await getCalls()
 
       setCalls(sortedCalls)
+      setNewCallId("")
 
       console.log("done")
     } catch (error) {
@@ -67,7 +69,8 @@ export default function Streams() {
 
 
   return (
-    <div className="flex items-center flex-col py-5">
+    <div className="px-5">
+      <div className="h-5"></div>
       <h1 className="text-2xl font-bold mb-5">Streams</h1>
       <form 
         onSubmit={(e) => {
@@ -75,23 +78,27 @@ export default function Streams() {
           const formData = new FormData(e.currentTarget)
           createStream({ stream_id: formData.get('stream-id') as string })
         }} 
-        className="flex flex-col items-center gap-3">
-        <h4 className="text-lg font-bold mb-2">Share New Stream</h4>
-        <p>Stream Id:</p>
-        <input name={"stream-id"} type="text" placeholder="id" className="border" />
-        <button>Share</button>
+        className="flex items-center">
+        <h4 className="text-lg font-bold mr-2">New stream:</h4>
+        <input name={"stream-id"} value={newCallId} onChange={(e)=>setNewCallId(e.target.value)} type="text" placeholder="id" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[200px] p-2.5" />
+        <button className="px-4 py-2 text-white bg-purple-700 rounded-lg ml-2 hover:bg-purple-800 cursor-pointer">Share</button>
       </form>
 
+      <div className="h-10"></div>
+
       <div>
-        <h4 className="mt-5 text-lg text-center font-bold mb-2">Previous streams</h4>
+        <h4 className="mt-5 text-lg font-bold mb-2">Previous streams</h4>
         <div>
           {
             calls.map((call, index) => {
               return (
-                <div key={"listofcallsformadmindashboard"+index} className="mb-4">
-                  <p>Call_id: { call.callId }</p>
-                  <p>state: { call.state }</p>
-                  <button className="cursor-pointer" type="button" onClick={()=>updateStreamState(call.id, "finished")}>set to finished</button>
+                <div key={"listofcallsformadmindashboard"+index} className="mb-8">
+                  <p><span className="font-bold">Call_id:</span> { call.callId }</p>
+                  <p><span className="font-bold">state:</span> <span className={`${call.state==="finished"?"text-green-600":"text-orange-500"} font-bold`}>{ call.state }</span></p>
+                  {
+                    call.state === "active" &&
+                    <button type="button" onClick={()=>updateStreamState(call.id, "finished")} className="mt-1 px-2 py-1 text-white bg-purple-700 rounded-md hover:bg-purple-800 cursor-pointer">set to finished</button>
+                  }
                 </div>
               )
             })

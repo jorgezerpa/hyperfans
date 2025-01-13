@@ -15,9 +15,13 @@ export default function RootLayout({
                   <Sidebar isAdmin />
               </div>
               <div className="h-screen w-full overflow-hidden pt-[80px]">
-                <Providers>
-                  { children }
-                </Providers>
+                <div className="overflow-y-scroll h-full">
+                  <Providers>
+                    <div className="">
+                      { children }
+                    </div>
+                  </Providers>
+                </div>
               </div>
           </div>
     </div>
