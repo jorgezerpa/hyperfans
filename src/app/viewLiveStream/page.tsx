@@ -41,16 +41,15 @@ export default function App() {
 
   return (
     <div>
-      token
-      {
-        (user && client) &&
-          <StreamVideo client={client} >
-            <LivestreamPlayer callType="livestream" callId={callId} />
-          </StreamVideo>
-      } 
+      <div className="">
+        {
+          (user && client) &&
+            <StreamVideo client={client} >
+              <LivestreamPlayer callType="livestream" callId={callId} layoutProps={{  }} />
+            </StreamVideo>
+        } 
+      </div>
     </div>
   );
 }
-
-
 

@@ -16,6 +16,7 @@ function Sidebar({ isAdmin }:{ isAdmin?:boolean }) {
     const [showMenu, setShowMenu] = useState(false)
 
     useEffect(()=>{
+        setWindowWidth(window.innerWidth)
         const resizeHandler = () => {
             setWindowWidth(window.innerWidth)
         } 
