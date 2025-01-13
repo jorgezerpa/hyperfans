@@ -16,21 +16,21 @@ export default function Home() {
   const router = useRouter()
   const { data: session } = useSession()
 
-  if (session) {
-    return (
-      <>
-        Signed in as {session?.user?.email} <br />
-        <button onClick={() => signOut()}>Sign out</button>
-      </>
-    )
-  }
+  // if (session) {
+  //   return (
+  //     <>
+  //       Signed in as {session?.user?.email} <br />
+  //       <button onClick={() => signOut()}>Sign out</button>
+  //     </>
+  //   )
+  // }
 
   return (
     <>
-      Not signed in <br />
-      <button onClick={() => router.push("/login")}>Sign in</button>
-      <br />or<br />
-      <button onClick={() => router.push("/signup")}>Register</button>
+      <h1 className="text-center pt-20 font-bold text-2xl pb-10">Hyper Fans</h1>
+      <div className="text-center cursor-pointer" onClick={() => router.push("/login")}>Sign in</div>
+      <div className="text-center cursor-pointer" >Or</div>
+      <div className="text-center cursor-pointer" onClick={() => router.push("/signup")}>Register</div>
     </>
   )
 }
