@@ -44,15 +44,15 @@ function UserCard({user}:{user:any}) {
   // 1. Call check subscription from contract 
 
   return (  
-  <div className="mb-4">
+  <div className="mb-7">
     <div>
-      name: { user.name }
+      <span className="font-bold">name:</span> { user.name }
     </div>
     <div>
-      email: { user.email }
+    <span className="font-bold">email:</span> { user.email }
     </div>
     <div>
-      address: { user.addresses[0] }
+      <span className="font-bold">address:</span> { user.addresses[0] }
     </div>
   </div>
   )

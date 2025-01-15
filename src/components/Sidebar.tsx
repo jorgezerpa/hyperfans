@@ -80,12 +80,12 @@ function Sidebar({ isAdmin }:{ isAdmin?:boolean }) {
                             icon={()=><FaUser size={20} />}
                             closeMenu={()=>{setShowMenu(false)}}
                         />
-                        <MenuItem
+                        {/* <MenuItem
                             title='Billing'
                             link='/dashboard/billing'
                             icon={()=><FaMoneyCheck size={20} />}
                             closeMenu={()=>{setShowMenu(false)}}
-                        />
+                        /> */}
                     </div>
                 
                     <div className='py-4 px-2 text-right w-full' onClick={async()=>await signOut({ callbackUrl:"/" })}>

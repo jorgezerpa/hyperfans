@@ -42,9 +42,6 @@ function Navbar() {
                 </div> */}
             </div>
             
-            <div onClick={address?handleDisconnect:handleConnect} className='bg-purple-700 text-white py-1 px-2 sm:py-2 sm:px-4 text-sm sm:text-base rounded-md cursor-pointer hover:bg-purple-600'>
-                {address?`${shortenString(address)}`:"connect"}
-            </div>
         </nav>
     )
 }

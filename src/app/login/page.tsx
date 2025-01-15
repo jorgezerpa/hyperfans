@@ -40,15 +40,26 @@ function LoginPage() {
 
 
   return (
-    <div>
-        <form onSubmit={handleSubmit} className='flex justify-center mt-64'>
-            <div className='flex flex-col w-4/5 lg:w-1/4'>
-                <h1 className='text-center text-2xl font-bold mb-3'>Login</h1>
-                <label className='font-bold' htmlFor="email">Email</label>
-                <input name={"email"} type="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" />
-                <label className='mt-3 font-bold' htmlFor="password">Password</label>
-                <input name={"password"} type="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" />
-                <button className="mt-5 px-4 py-2 text-white bg-purple-700 rounded-lg hover:bg-purple-800 cursor-pointer">Submit</button>
+    // <div className='bg-black min-h-screen flex flex-col justify-center items-center'>
+    //     <form onSubmit={handleSubmit} className='flex justify-center'>
+    //         <div className='flex flex-col gap-4'>
+    //             <input placeholder='Name' name={"name"} type="text" className="text-white text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]" />
+    //             <input placeholder='Email' name={"email"} type="email" className="text-white text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]" />
+    //             <input placeholder='age' name={"birthday"} className="text-white text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]" />
+    //             <input placeholder='password' name={"password"} type="password" className="text-white text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]" />
+    //             <input placeholder='address' name={"address"} className="text-white text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]" />
+                
+    //             <button className="text-white mt-5 text-center text-3xl px-10 py-5 rounded-full border cursor-pointer border-white inline-block bg-black w-[250px]">Register</button>
+    //         </div>
+    //     </form>
+    // </div>
+
+    <div className='bg-black min-h-screen flex flex-col justify-center items-center'>
+        <form onSubmit={handleSubmit} className='flex justify-center'>
+            <div className='flex flex-col gap-5'>
+                <input placeholder='email' name={"email"} type="email" className="text-white text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]" />
+                <input placeholder='password' name={"password"} type="password" className="text-white text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]" />
+                <button className="text-white mt-5 text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]">Submit</button>
             </div>
         </form>
     </div>
