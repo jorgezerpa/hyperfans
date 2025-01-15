@@ -8,7 +8,12 @@ export function ConnectToMetamask() {
   return connectors
     .filter(conn => conn.id === "injected")
     .map((connector) => (
-    <button key={connector.uid} onClick={() => connect({ connector })} type='button' className="mt-5 px-4 py-2 text-white bg-slate-700 rounded-lg hover:bg-purple-800 cursor-pointer my-2 ">
+    <button key={connector.uid} 
+      onClick={() => {
+        console.log("click")
+        connect({ connector })
+      }}
+      type='button' className="mt-5 px-4 py-2 text-black bg-gray-100 rounded-lg hover:bg-gray-300 cursor-pointer my-2 ">
         Connect Wallet
     </button>
     // <button key={connector.uid} onClick={() => connect({ connector })}>
