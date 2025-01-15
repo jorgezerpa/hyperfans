@@ -1,6 +1,6 @@
 "use client"
 import * as React from 'react'
-import { Connector, useConnect } from 'wagmi'
+import {  useConnect } from 'wagmi'
 
 export function ConnectToMetamask() {
   const { connectors, connect } = useConnect()

@@ -1,6 +1,5 @@
 'use client'
 import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
 import { signOut, useSession } from 'next-auth/react'
 
 import { useAccount, useConnect, useDisconnect, useConnectors } from 'wagmi'
@@ -14,13 +13,12 @@ import { ViewStreamsButton } from "@/components/ViewStreamButton"
 
 
 export default function Home() {
-  const router = useRouter()
   const { data } = useSession()
-  const { error, status, writeContractAsync } = useWriteContract()
+  const { writeContractAsync } = useWriteContract()
   
   const [isPaid, setIsPaid] = useState(false)
 
-  const [page, setPage] = useState(1)
+  const [page] = useState(1)
 
   const { address } = useAccount()
   const { disconnect } = useDisconnect()
@@ -49,14 +47,14 @@ export default function Home() {
   async function pay () {
 
     // fetch this from DB
-    let price = 100
+    const price = 100
 
-    // await writeContractAsync({
-    //   address: USDC_CONTRACT,
-    //   abi:erc20Abi,
-    //   functionName: 'transfer',
-    //   args: [WALLET_TO_PAY, BigInt(price)],
-    // })
+    await writeContractAsync({
+      address: USDC_CONTRACT,
+      abi:erc20Abi,
+      functionName: 'transfer',
+      args: [WALLET_TO_PAY, BigInt(price)],
+    })
 
     // set on db as Payed early access
     await axios.put("/api/payments/setPaid", { email:data?.user.email  }) 

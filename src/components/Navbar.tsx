@@ -1,30 +1,30 @@
 "use client"
 import React from 'react'
-import { useAccount, useConnect, useDisconnect, useConnectors } from 'wagmi'
+// import { useConnect,  useConnectors } from 'wagmi'
 
 function Navbar() {
-    const { address } = useAccount()
-    const { disconnect } = useDisconnect()
-    const { connect } = useConnect()
-    const connectors = useConnectors()
+    // const { address } = useAccount()
+    // const { disconnect } = useDisconnect()
+    // const { connect } = useConnect()
+    // const connectors = useConnectors()
 
-    const handleConnect = () => {
-        connect({
-            connector: connectors.find(con => con.id === "injected") || connectors[0]
-        })
-    }
+    // const handleConnect = () => {
+    //     connect({
+    //         connector: connectors.find(con => con.id === "injected") || connectors[0]
+    //     })
+    // }
 
-    const handleDisconnect = () => {
-        disconnect()
-    }
+    // const handleDisconnect = () => {
+    //     disconnect()
+    // }
 
-    function shortenString(str: string): string {
-        if (str.length <= 6) {
-          return str; // If string is 6 characters or less, return it as is
-        }
+    // function shortenString(str: string): string {
+    //     if (str.length <= 6) {
+    //       return str; // If string is 6 characters or less, return it as is
+    //     }
       
-        return `${str.substring(0, 4)}...${str.substring(str.length - 2)}`;
-    }
+    //     return `${str.substring(0, 4)}...${str.substring(str.length - 2)}`;
+    // }
 
     return (
         <nav

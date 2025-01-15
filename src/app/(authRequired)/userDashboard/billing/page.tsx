@@ -40,7 +40,7 @@ export default function Billing() {
     args: ['0x03A71968491d55603FFe1b11A9e23eF013f75bCF'],
   })
 
-  const { data: hash, writeContract } = useWriteContract()
+  const { writeContract } = useWriteContract()
 
   const mint = async() => {
     writeContract({
