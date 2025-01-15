@@ -10,6 +10,8 @@ import { erc20Abi } from "viem"
 import { WALLET_TO_PAY, USDC_CONTRACT } from "@/constants/web3"
 import axios from "axios"
 
+import { ViewStreamsButton } from "@/components/ViewStreamButton"
+
 
 export default function Home() {
   const router = useRouter()
@@ -105,9 +107,10 @@ export default function Home() {
                   </div>
               }
 
-              <div onClick={()=>setPage(2)} style={{ opacity:isPaid?1:.5 }} className="text-white text-3xl px-10 py-5 rounded-full border cursor-pointer border-white inline-block">
+              {/* <div onClick={()=>setPage(2)} style={{ opacity:isPaid?1:.5 }} className="text-white text-3xl px-10 py-5 rounded-full border cursor-pointer border-white inline-block">
                 Join Stream
-              </div>
+              </div> */}
+              <ViewStreamsButton />
 
             </div>
           </div>

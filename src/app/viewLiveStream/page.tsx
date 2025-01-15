@@ -41,12 +41,14 @@ export default function App() {
 
   return (
     <div>
-      <div className="bg-gray-900 h-screen">
+      <div className="bg-black h-screen">
+        <h1 className="text-white text-center pt-20 font-bold text-3xl sm:text-4xl pb-10">Hyper Fans</h1>
+
         {
           (user && client) &&
             <StreamVideo client={client} >
               <div className="flex justify-center pt-10">
-                <div className="w-[95%] md:w-[600px] min-h-[300px] bg-gray-300 rounded-xl overflow-hidden text-white">
+                <div className="w-[95%] md:w-[600px] min-h-[200px] bg-gray-300 rounded-xl overflow-hidden text-white">
                   <LivestreamPlayer callType="livestream" callId={callId} layoutProps={{  }} />
                 </div>
               </div>
