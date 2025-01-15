@@ -32,7 +32,8 @@ export async function POST (req: Request) {
             name: data.name,
             email: data.email,
             password: data.password,
-            // addresses: data.addresses, will be added later on when connect wallet to pay
+            birthday: data.birthday,
+            addresses: data.addresses
         }
     })
 

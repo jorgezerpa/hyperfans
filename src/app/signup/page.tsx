@@ -1,13 +1,8 @@
 "use client"
 import React from 'react'
 import { signIn } from 'next-auth/react'
-import { ConnectToMetamask } from "@/components/web3/Connectors"
-import { useAccount } from 'wagmi'
 
 function RegisterPage() {
-
-    const { address } = useAccount()
-
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         try {
             e.preventDefault()
@@ -15,11 +10,13 @@ function RegisterPage() {
             const payload = {
                 name: formData.get('name'),
                 email: formData.get('email'),
+                birthday: formData.get('birthday'),
                 password: formData.get('password'),
-                addresses: [address]
+                addresses: [formData.get('address')]
             }
 
-            if(!formData.get('name') || !formData.get('email') || !formData.get('password') || !address) {
+
+            if(!formData.get('name') || !formData.get('email') || !formData.get('password') || !formData.get('address')) {
                 return 
             }
             
@@ -39,29 +36,17 @@ function RegisterPage() {
     }
 
 
-    const connect = async () => {
-       
-    };
-
-
   return (
-    <div>
-        <form onSubmit={handleSubmit} className='flex justify-center mt-64'>
-            <div className='flex flex-col w-4/5 lg:w-1/4'>
-                <h1 className='text-center text-2xl font-bold mb-3'>Register</h1>
-                <label className='font-bold' htmlFor="name">Name</label>
-                <input name={"name"} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" />
-                <label className='mt-3 font-bold' htmlFor="email">Email</label>
-                <input name={"email"} type="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" />
-                <label className='mt-3 font-bold' htmlFor="password">Password</label>
-                <input name={"password"} type="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" />
-
-                <ConnectToMetamask />
-                <p className='text-center'>
-                    {address && `${address}`}
-                </p>
+    <div className='bg-black min-h-screen flex flex-col justify-center items-center'>
+        <form onSubmit={handleSubmit} className='flex justify-center'>
+            <div className='flex flex-col gap-4'>
+                <input placeholder='Name' name={"name"} type="text" className="text-white text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]" />
+                <input placeholder='Email' name={"email"} type="email" className="text-white text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]" />
+                <input placeholder='age' name={"birthday"} className="text-white text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]" />
+                <input placeholder='password' name={"password"} type="password" className="text-white text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]" />
+                <input placeholder='address' name={"address"} className="text-white text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]" />
                 
-                <button disabled={!address} className={`mt-5 px-4 py-2 text-white bg-purple-700 rounded-lg hover:bg-purple-800 ${!address&&"opacity-65"} ${address&&"cursor-pointer"}`}>Register</button>
+                <button className="text-white mt-5 text-center text-3xl px-10 py-5 rounded-full border cursor-pointer border-white inline-block bg-black w-[250px]">Register</button>
             </div>
         </form>
     </div>
