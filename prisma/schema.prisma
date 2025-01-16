@@ -7,6 +7,11 @@ datasource db {
   url      = env("DIRECT_URL")
 }
 
+model Config {
+  id        String   @id               @default(cuid())
+  price     String
+}
+
 model Call {
   id        String   @id               @default(cuid())
   state     String

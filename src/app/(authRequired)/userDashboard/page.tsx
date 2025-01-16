@@ -49,9 +49,10 @@ export default function Home() {
     try {
       setLoading(true)
       // fetch this from DB
-      // const priceResponse = await axios.post("/api/payments/getPrice")
-      // const price = await priceResponse.data
-      const price = 100
+      const priceResponse = await axios.post("/api/payments/getPrice")
+      let price = await priceResponse.data
+      price = price.price
+      // const price = 100
   
       await writeContractAsync({
         address: USDC_CONTRACT,
