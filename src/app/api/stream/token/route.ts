@@ -2,8 +2,8 @@ import { NextResponse } from "next/server"
 
 import { StreamClient } from "@stream-io/node-sdk";
 
-const apiKey = "tqag879npxda";
-const secret = "tmr5kn99uhbcam8mfbx49nfw7ytq8sacestj2vkbaus8ycdk76stvxgse33s9ax4";
+const apiKey = process.env.STREAM_API_KEY as string;
+const secret = process.env.STREAM_API_SECRET as string;;
 const client = new StreamClient(apiKey, secret);
 
 export async function PUT () {

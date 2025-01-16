@@ -9,7 +9,7 @@ import {
 import { useSearchParams } from "next/navigation";
 import axios from "axios";
 
-const apiKey = "tqag879npxda"; //never change 
+const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY as string; //never change 
 
 export default function App() {
   const params = useSearchParams()
