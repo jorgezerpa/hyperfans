@@ -46,20 +46,28 @@ export default function Home() {
   }
 
   async function pay () {
-
-    // fetch this from DB
-    const price = 100
-
-    await writeContractAsync({
-      address: USDC_CONTRACT,
-      abi:erc20Abi,
-      functionName: 'transfer',
-      args: [WALLET_TO_PAY, BigInt(price)],
-    })
-
-    // set on db as Payed early access
-    await axios.put("/api/payments/setPaid", { email:data?.user.email  }) 
-    setIsPaid(true)
+    try {
+      setLoading(true)
+      // fetch this from DB
+      // const priceResponse = await axios.post("/api/payments/getPrice")
+      // const price = await priceResponse.data
+      const price = 100
+  
+      await writeContractAsync({
+        address: USDC_CONTRACT,
+        abi:erc20Abi,
+        functionName: 'transfer',
+        args: [WALLET_TO_PAY, BigInt(price)],
+      })
+  
+      // set on db as Payed early access
+      await axios.put("/api/payments/setPaid", { email:data?.user.email  }) 
+      setLoading(false)
+      setIsPaid(true)
+    } catch (error) {
+      setLoading(false)
+      console.log("Error on payment ->", error)
+    }
   }
 
   useEffect(()=>{
