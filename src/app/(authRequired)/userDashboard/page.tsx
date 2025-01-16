@@ -52,9 +52,8 @@ export default function Home() {
       const priceResponse = await axios.post("/api/payments/getPrice")
       let price = await priceResponse.data
       price = price.price
-      // const price = 100
   
-      await writeContractAsync({
+      const transactionHash = await writeContractAsync({
         address: USDC_CONTRACT,
         abi:erc20Abi,
         functionName: 'transfer',
@@ -62,7 +61,7 @@ export default function Home() {
       })
   
       // set on db as Payed early access
-      await axios.put("/api/payments/setPaid", { email:data?.user.email  }) 
+      await axios.put("/api/payments/setPaid", { email:data?.user.email, transactionHash  }) 
       setLoading(false)
       setIsPaid(true)
     } catch (error) {
