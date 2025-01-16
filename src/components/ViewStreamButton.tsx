@@ -44,7 +44,7 @@ export function ViewStreamsButton() {
                 }
                 {
                     (calls[0]?.state !== "active") &&
-                    <button type="button" className="text-white text-3xl px-10 py-5 rounded-full border cursor-pointer border-white inline-block">No Actual Stream</button>
+                    <button type="button" className="text-white text-3xl px-10 py-5 rounded-full border border-white inline-block">No Actual Stream</button>
                 }
             </div>            
     )

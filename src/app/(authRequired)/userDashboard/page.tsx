@@ -17,6 +17,7 @@ export default function Home() {
   const { writeContractAsync } = useWriteContract()
   
   const [isPaid, setIsPaid] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   const [page] = useState(1)
 
@@ -64,9 +65,12 @@ export default function Home() {
   useEffect(()=>{
     (async()=>{
       try {
+        setLoading(true)
         const isPaid = await axios.post("/api/payments/isPaid", {email:data?.user.email}) 
         setIsPaid(isPaid.data.user.earlyAccessPaid)
+        setLoading(false)
       } catch (error) {
+        setLoading(false)
         console.log("error on user streams", error)
       }
     })()
@@ -91,9 +95,14 @@ export default function Home() {
             </div>
             <h1 className="text-white text-center pt-20 font-bold text-3xl sm:text-4xl pb-10">Hyper Fans</h1>
             <div className="flex flex-col justify-center items-center min-h-[600px]">
-              
               {
-                !isPaid &&
+                loading && 
+                  <div className="flex justify-center items-center text-2xl text-white">
+                    Loading...
+                  </div>
+              }
+              {
+                (!isPaid && !loading) &&
                   <div className="mb-10 flex justify-center flex-col items-center">
                     <div className="text-white text-2xl text-center mb-2">To see the streams:</div>
                     <div className="text-white text-xl">1. Connect your wallet</div>
@@ -113,10 +122,9 @@ export default function Home() {
                   </div>
               }
 
-              {/* <div onClick={()=>setPage(2)} style={{ opacity:isPaid?1:.5 }} className="text-white text-3xl px-10 py-5 rounded-full border cursor-pointer border-white inline-block">
-                Join Stream
-              </div> */}
-              <ViewStreamsButton />
+              {
+                !loading && <ViewStreamsButton />
+              }
 
             </div>
           </div>
