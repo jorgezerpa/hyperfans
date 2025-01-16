@@ -1,7 +1,12 @@
 import { NextResponse } from "next/server"
 import {prisma} from "../../../../../../lib/prisma"
+import { authOptions } from "../../../auth/[...nextauth]/route"
+import { getServerSession } from "next-auth"
 
 export async function PUT (req: Request) {
+    const session = await getServerSession(authOptions)
+    if(session?.user.role !== "admin") return NextResponse.error()
+        
     const { id, state } = await req.json()
 
     await prisma.call.update({
