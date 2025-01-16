@@ -32,6 +32,7 @@ export default function Config() {
       setLoading(false)
     } catch (error) {
       setLoading(false)
+      console.log(error)
       alert("error setting new price, try again")
     }
   }
