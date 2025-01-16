@@ -6,7 +6,7 @@ import bcrypt from "bcrypt"
 export const authOptions:AuthOptions = {
   pages: {
     signIn: "/login",
-    newUser: "/signup"
+    // newUser: "/signup"
   },
   providers: [
       CredentialsProvider({

@@ -1,6 +1,7 @@
 "use client"
 import React, {useState} from 'react'
 import { signIn } from 'next-auth/react'
+import axios from 'axios'
 
 function RegisterPage() {
     const [loading, setLoading] = useState(false)
@@ -18,12 +19,11 @@ function RegisterPage() {
                 addresses: [formData.get('address')]
             }
 
-
             if(!formData.get('name') || !formData.get('email') || !formData.get('password') || !formData.get('address')) {
                 return 
             }
             
-            await fetch("/api/register", { body: JSON.stringify(payload), method: "POST", headers: { "Content-Type": "application/json" }})
+            await axios.post("/api/register", { ...payload })
 
             await signIn("credentials", {
                 username: payload.email as string,
@@ -32,9 +32,14 @@ function RegisterPage() {
                 redirect: true
             })
             setLoading(false) 
-        } catch (error) {
-            setLoading(false) 
+        } catch (error:any) {
+            setLoading(false)
             console.log("Error on sign up process -> ", error)
+            if(error?.status==401) {
+                alert("This email is already registered")
+                return 
+            } 
+            alert("Something went wrong")
         }
     }
 
