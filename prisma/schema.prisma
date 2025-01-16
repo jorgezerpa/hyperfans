@@ -21,16 +21,17 @@ model Call {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name            String?
-  email           String?   @unique
-  password        String?
-  emailVerified   DateTime?
-  image           String?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-  addresses       String[]
-  birthday        String?
-  role            String    @default("user")
-  earlyAccessPaid Boolean   @default(false)
+  id                          String    @id @default(cuid())
+  name                        String?
+  email                       String?   @unique
+  password                    String?
+  emailVerified               DateTime?
+  image                       String?
+  createdAt                   DateTime  @default(now())
+  updatedAt                   DateTime  @updatedAt
+  addresses                   String[]
+  birthday                    String?
+  role                        String    @default("user")
+  earlyAccessPaid             Boolean   @default(false)
+  paymentTransactions         String[]
 }
