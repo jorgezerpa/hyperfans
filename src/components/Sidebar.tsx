@@ -80,6 +80,12 @@ function Sidebar({ isAdmin }:{ isAdmin?:boolean }) {
                             icon={()=><FaUser size={20} />}
                             closeMenu={()=>{setShowMenu(false)}}
                         />
+                        <MenuItem
+                            title='Config'
+                            link='/dashboard/config'
+                            icon={()=><FaUser size={20} />}
+                            closeMenu={()=>{setShowMenu(false)}}
+                        />
                         {/* <MenuItem
                             title='Billing'
                             link='/dashboard/billing'
