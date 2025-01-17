@@ -101,7 +101,7 @@ export default function Home() {
               </div>
               <div onClick={async()=>await signOut({ callbackUrl:"/" })} className="text-white font-bold text-xl cursor-pointer">Logout</div>
             </div>
-            <h1 className="text-white text-center pt-20 font-bold text-3xl sm:text-4xl pb-10">Hyper Fans</h1>
+            <h1 className="text-white text-center pt-20 font-bold text-3xl sm:text-4xl pb-10">Hyperfans</h1>
             <div className="flex flex-col justify-center items-center min-h-[600px]">
               {
                 loading && 
