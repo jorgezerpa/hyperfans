@@ -1,13 +1,9 @@
 import { http, createConfig } from 'wagmi'
 import { 
   arbitrum
-  // mainnet, sepolia, base, optimism, arbitrum
  } from 'wagmi/chains'
-import { injected, 
-    // metaMask, safe, walletConnect 
-} from 'wagmi/connectors'
-
-// const projectId = '<WALLETCONNECT_PROJECT_ID>'
+import { injected} from 'wagmi/connectors'
+import {RPC_ENDPOINT} from "@/constants/web3"
 
 export const config = createConfig({
   chains: [
@@ -20,12 +16,7 @@ export const config = createConfig({
     // safe(),
   ],
   transports: {
-    // [localhost.id]: http("http://127.0.0.1:8545/"),
-    // [mainnet.id]: http("https://mainnet.infura.io/v3/b26a78bcb38b4957a68b3cdc645c2547"),
-    // [base.id]: http("https://mainnet.infura.io/v3/b26a78bcb38b4957a68b3cdc645c2547"),
-    // [sepolia.id]: http("https://sepolia.infura.io/v3/b26a78bcb38b4957a68b3cdc645c2547"),
-    // [optimism.id]: http(),
-    [arbitrum.id]: http("https://arbitrum-sepolia.infura.io/v3/b26a78bcb38b4957a68b3cdc645c2547"),
+    [arbitrum.id]: http(RPC_ENDPOINT),
   },
   
 })
