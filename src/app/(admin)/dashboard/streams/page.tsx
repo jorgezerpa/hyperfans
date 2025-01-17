@@ -3,12 +3,17 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 
 export default function Streams() {
-
+  const [loading, setLoading] = useState(false)
   const [calls, setCalls] = useState<any[]>([])
   const [newCallId, setNewCallId] = useState("")
 
   async function createStream(data: { stream_id: string }){
     try {
+      if(!data.stream_id) {
+        alert("Please set a stream id")
+        return 
+      }
+      setLoading(true)
       const payload = {
           callId: data.stream_id,
           state: "active"
@@ -19,10 +24,12 @@ export default function Streams() {
 
       setCalls(sortedCalls)
       setNewCallId("")
-
+      setLoading(false)
       console.log("done")
     } catch (error) {
+      setLoading(false)
       console.log("error creating call from dashboard->streams", error)
+      alert("something went wrong, please try again")
     }
   } 
 
@@ -37,26 +44,32 @@ export default function Streams() {
       console.log("done")
     } catch (error) {
       console.log("error creating call from dashboard->streams", error)
+      alert("something went wrong, please try again")
     }
   } 
 
   async function getCalls() {
-    const calls = await axios.put("/api/stream/call/get_calls")
-
-    const sortedCalls = calls?.data?.calls?.sort((a:any, b:any) => {
-      const dateA = new Date(a.createdAt);
-      const dateB = new Date(b.createdAt);
+    try {
+      const calls = await axios.put("/api/stream/call/get_calls")
   
-      // Reverse the comparison for descending order
-      if (dateA < dateB) {
-        return 1; // b comes before a
-      } else if (dateA > dateB) {
-        return -1; // a comes before b
-      } else {
-        return 0; // a and b have the same createdAt
-      }
-    }) || [];
-    return sortedCalls
+      const sortedCalls = calls?.data?.calls?.sort((a:any, b:any) => {
+        const dateA = new Date(a.createdAt);
+        const dateB = new Date(b.createdAt);
+    
+        // Reverse the comparison for descending order
+        if (dateA < dateB) {
+          return 1; // b comes before a
+        } else if (dateA > dateB) {
+          return -1; // a comes before b
+        } else {
+          return 0; // a and b have the same createdAt
+        }
+      }) || [];
+      return sortedCalls
+    } catch (error) {
+      console.log("error getting calls ", error)
+      alert("something went wrong, please try again")
+    }
   }
 
 
@@ -83,7 +96,11 @@ export default function Streams() {
         <p>Create a new stream on the <a href="https://dashboard.getstream.io/app/1358593/video/overview" target="_blank" className="text-blue-600">Stream.io</a> dashboard an paste the Livestream ID down here to share with all users</p>
         <div className="flex  items-center">
           <input name={"stream-id"} value={newCallId} onChange={(e)=>setNewCallId(e.target.value)} type="text" placeholder="id" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[200px] p-2.5" />
-          <button className="px-4 py-2 text-white bg-purple-700 rounded-lg ml-2 hover:bg-purple-800 cursor-pointer">Share</button>
+          <button disabled={loading||!newCallId} style={{ opacity:(newCallId)?1:.3 }} className="px-4 py-2 text-white bg-purple-700 rounded-lg ml-2 hover:bg-purple-800 cursor-pointer">Share</button>
+          {
+            loading &&
+            <div>updating...</div>
+          }
         </div>
       </form>
 

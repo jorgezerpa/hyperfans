@@ -7,19 +7,20 @@ export default function Config() {
   const [loading, setLoading] = useState(true)
   const [newPrice, setNewPrice] = useState<string>("")
 
-  const getUsers = async() => {
+  const getPrice = async() => {
     try {
       const price = await axios.post("/api/payments/getPrice")
       setNewPrice(price.data.price)
     } catch (error) {
       console.log("error getting price on admin config -> ", error)
+      alert("something went wrong, please refresh the page")
     }
   }
 
   useEffect(()=>{
     (async()=>{
       setLoading(true)
-      await getUsers()
+      await getPrice()
       setLoading(false)
     })()
   }, [])
