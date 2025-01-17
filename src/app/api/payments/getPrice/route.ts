@@ -7,6 +7,7 @@ export async function POST () {
     
         return NextResponse.json({ price:config?.price })
     } catch (error) {
+        console.log(error)
         return NextResponse.json({}, {status:500})
     }
 

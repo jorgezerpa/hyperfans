@@ -29,6 +29,7 @@ export default function Streams() {
             }) || [];
             return sortedCalls
         } catch (error) {
+            console.log(error)
             alert("something went wrong, plese refresh the page")
         }
     }

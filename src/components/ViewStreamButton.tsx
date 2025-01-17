@@ -29,6 +29,7 @@ export function ViewStreamsButton() {
             }) || [];
             return sortedCalls
         } catch (error) {
+            console.log(error)
             alert("something went wrong, please refresh the page")
         }
     }

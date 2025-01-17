@@ -6,6 +6,7 @@ export async function PUT () {
         const calls = await prisma.call.findMany({})
         return NextResponse.json({ calls })    
     } catch (error) {
+        console.log(error)
         return NextResponse.json({}, {status:500})
     }
 }

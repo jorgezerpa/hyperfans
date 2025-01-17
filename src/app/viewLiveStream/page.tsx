@@ -35,6 +35,7 @@ export default function App() {
       const data = await response.data;
       return data.token;
     } catch (error) {
+      console.log(error)
       alert("something went wrong, please refresh the page")
     }
   };

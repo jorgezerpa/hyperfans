@@ -14,6 +14,7 @@ export async function PUT () {
     
         return NextResponse.json({ token })
     } catch (error) {
+        console.log(error)
         return NextResponse.json({}, {status:500})
     }
 }

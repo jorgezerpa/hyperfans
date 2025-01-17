@@ -17,6 +17,7 @@ export async function PUT (req: Request) {
     
         return NextResponse.json({ ok:200 })    
     } catch (error) {
+        console.log(error)
         return NextResponse.json({}, {status:500})
     }
 }
