@@ -12,6 +12,7 @@ export default function Users() {
       setUsers(response.data.users)
     } catch (error) {
       console.log("error getting admin users -> ", error)
+      alert("something went wrong, please try again")
     }
   }
 

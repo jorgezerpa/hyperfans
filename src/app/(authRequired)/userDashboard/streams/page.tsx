@@ -11,22 +11,26 @@ export default function Streams() {
 
 
     async function getCalls() {
-        const calls = await axios.put("/api/stream/call/get_calls")
-
-        const sortedCalls = calls?.data?.calls?.sort((a:any, b:any) => {
-        const dateA = new Date(a.createdAt);
-        const dateB = new Date(b.createdAt);
+        try {
+            const calls = await axios.put("/api/stream/call/get_calls")
     
-        // Reverse the comparison for descending order
-        if (dateA < dateB) {
-            return 1; // b comes before a
-        } else if (dateA > dateB) {
-            return -1; // a comes before b
-        } else {
-            return 0; // a and b have the same createdAt
+            const sortedCalls = calls?.data?.calls?.sort((a:any, b:any) => {
+            const dateA = new Date(a.createdAt);
+            const dateB = new Date(b.createdAt);
+        
+            // Reverse the comparison for descending order
+            if (dateA < dateB) {
+                return 1; // b comes before a
+            } else if (dateA > dateB) {
+                return -1; // a comes before b
+            } else {
+                return 0; // a and b have the same createdAt
+            }
+            }) || [];
+            return sortedCalls
+        } catch (error) {
+            alert("something went wrong, plese refresh the page")
         }
-        }) || [];
-        return sortedCalls
     }
 
     useEffect(()=>{

@@ -67,6 +67,7 @@ export default function Home() {
     } catch (error) {
       setLoading(false)
       console.log("Error on payment ->", error)
+      alert("something went wrong making your payment. Please verify that the transaction was not performed and try again. If it was, contact with the admins inmediatly.")
     }
   }
 
@@ -80,6 +81,7 @@ export default function Home() {
       } catch (error) {
         setLoading(false)
         console.log("error on user streams", error)
+        alert("something went wrong, please refresh the page")
       }
     })()
   }, [])

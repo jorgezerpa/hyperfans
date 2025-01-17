@@ -18,6 +18,7 @@ function ShareLiveStreamPage() {
             console.log("done")
         } catch (error) {
             console.log("Error en login page ->", error)
+            alert("something went wrong, please try again")
         }
 
     }

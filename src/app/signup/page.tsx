@@ -58,7 +58,7 @@ function RegisterPage() {
                     <div className='flex flex-col gap-4'>
                         <input placeholder='Name' name={"name"} type="text" className="text-white text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]" />
                         <input placeholder='Email' name={"email"} type="email" className="text-white text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]" />
-                        <input placeholder='age' name={"birthday"} className="text-white text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]" />
+                        <input placeholder='age' name={"birthday"} type='number' className="text-white text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]" />
                         <input placeholder='password' name={"password"} type="password" className="text-white text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]" />
                         <input placeholder='address' name={"address"} className="text-white text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]" />
                         

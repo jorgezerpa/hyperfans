@@ -30,9 +30,13 @@ export default function App() {
   },[])
 
   const tokenProvider = async () => {
-    const response = await axios.put("/api/stream/token");
-    const data = await response.data;
-    return data.token;
+    try {
+      const response = await axios.put("/api/stream/token");
+      const data = await response.data;
+      return data.token;
+    } catch (error) {
+      alert("something went wrong, please refresh the page")
+    }
   };
 
   const callId = params.get("livestream-id") as string

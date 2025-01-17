@@ -7,9 +7,13 @@ const secret = process.env.STREAM_API_SECRET as string;;
 const client = new StreamClient(apiKey, secret);
 
 export async function PUT () {
-    const userId = "!anon"
-    const validity = 3600
-    const token = await client.generateUserToken({ user_id: userId, validity_in_seconds: validity });
-
-    return NextResponse.json({ token })
+    try {
+        const userId = "!anon"
+        const validity = 3600
+        const token = await client.generateUserToken({ user_id: userId, validity_in_seconds: validity });
+    
+        return NextResponse.json({ token })
+    } catch (error) {
+        return NextResponse.json({}, {status:500})
+    }
 }

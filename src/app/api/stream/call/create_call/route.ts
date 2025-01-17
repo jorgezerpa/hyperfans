@@ -4,17 +4,21 @@ import { authOptions } from "@/options/authOptions"
 import { getServerSession } from "next-auth"
 
 export async function POST (req: Request) {
-    const session = await getServerSession(authOptions)
-    if(session?.user.role !== "admin") return NextResponse.error()
-        
-    const { callId, state } = await req.json()
-
-    await prisma.call.create({
-        data: {
-            state: state||"active",
-            callId: callId // livestream id
-        }
-    })
+    try {
+        const session = await getServerSession(authOptions)
+        if(session?.user.role !== "admin") return NextResponse.error()
+            
+        const { callId, state } = await req.json()
     
-    return NextResponse.json({ ok:200 })    
+        await prisma.call.create({
+            data: {
+                state: state||"active",
+                callId: callId // livestream id
+            }
+        })
+        
+        return NextResponse.json({ ok:200 })    
+    } catch (error) {
+        return NextResponse.json({}, {status:500})
+    }
 }
