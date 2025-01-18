@@ -54,9 +54,9 @@ function LoginPage() {
             !loading &&
                 <form onSubmit={handleSubmit} className='flex justify-center'>
                     <div className='flex flex-col gap-5'>
-                        <input placeholder='email' name={"email"} type="email" className="text-white text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]" />
-                        <input placeholder='password' name={"password"} type="password" className="text-white text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]" />
-                        <button className="text-white mt-5 text-center text-3xl px-10 py-5 rounded-full border  border-white inline-block bg-black w-[250px]">Submit</button>
+                        <input placeholder='email' name={"email"} type="email" className="text-white text-center text-2xl px-10 py-3 rounded-full border  border-white inline-block bg-black w-[250px]" />
+                        <input placeholder='password' name={"password"} type="password" className="text-white text-center text-2xl px-10 py-3 rounded-full border  border-white inline-block bg-black w-[250px]" />
+                        <button className="min-w-[240px] text-center mb-8 text-white text-2xl py-3 rounded-full border cursor-pointer border-white inline-block bg-[#3BB4DA] hover:scale-[96%] transition-all hover:border-white hover:border-[3px] origin-center">login</button>
                     </div>
                 </form>
         }
