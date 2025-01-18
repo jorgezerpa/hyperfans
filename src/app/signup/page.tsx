@@ -7,6 +7,7 @@ import Image from 'next/image'
 
 function RegisterPage() {
     const [loading, setLoading] = useState(false)
+    const [acceptPrivacyPolicy, setAcceptPrivacyPolicy] = useState(false)
 
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         try {
@@ -71,8 +72,17 @@ function RegisterPage() {
                         <input placeholder='age' name={"birthday"} type='number' className="text-white text-center text-2xl px-10 py-3 rounded-full border  border-white inline-block bg-black w-[250px]" />
                         <input placeholder='password' name={"password"} type="password" className="text-white text-center text-2xl px-10 py-3 rounded-full border  border-white inline-block bg-black w-[250px]" />
                         <input placeholder='address' name={"address"} className="text-white text-center text-2xl px-10 py-3 rounded-full border  border-white inline-block bg-black w-[250px]" />
-                        
-                        <button className="text-center mb-8 text-white text-2xl py-3 rounded-full border cursor-pointer border-white inline-block bg-[#3BB4DA] hover:scale-[96%] transition-all hover:border-white hover:border-[3px] origin-center w-[250px]">Register</button>
+                        <div className="flex items-center my-3">
+                            <input checked={acceptPrivacyPolicy} type="checkbox" onChange={(e)=>setAcceptPrivacyPolicy(e.target.checked)} className="w-4 h-4 border-gray-300 rounded focus:ring-blue-500" />
+                            <a 
+                                href="https://hyper-fans.github.io/legal-docs/HyperFans%20Disclaimer%20%26%20Privacy%20Policy.pdf" 
+                                className="ml-2 text-sm text-white hover:border-b-2 hover:border-b-white" 
+                                target="_blank" 
+                            >
+                                Accept Privacy Policy
+                            </a>
+                        </div>
+                        <button disabled={!acceptPrivacyPolicy} style={{opacity:acceptPrivacyPolicy?1:.6}} className="text-center mb-8 text-white text-2xl py-3 rounded-full border cursor-pointer border-white inline-block bg-[#3BB4DA] hover:scale-[96%] transition-all hover:border-white hover:border-[3px] origin-center w-[250px]">Register</button>
                     </div>
                 </form>
         }
