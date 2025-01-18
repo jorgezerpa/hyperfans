@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from "react"
 
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 
 export default function Home() {
   const router = useRouter()
@@ -34,7 +35,14 @@ export default function Home() {
       {
         page === 1 &&
             <div className="absolute top-0 left-0 bottom-0 right-0 flex flex-col items-center justify-start gap-8 sm:gap-0 sm:justify-between py-32">
-              <h1 className="text-white text-center text-5xl sm:text-8xl italic font-extralight"><span>Hyper</span><span className="text-[#75C9E1]">Fans</span></h1>
+              <div style={{ width: '450px', height: '80px', position:"relative"}} className="scale-[50%] sm:scale-100"> 
+                <Image 
+                  src="/images/logo.png" 
+                  alt="My Image" 
+                  layout="fill" 
+                  objectFit="contain" 
+                />
+              </div>
               <div onClick={()=>setPage(2)} className="text-white text-3xl px-3 py-3 rounded-full border cursor-pointer border-white inline-block bg-[#3BB4DA] hover:scale-[96%] transition-all hover:border-white hover:border-[3px] origin-center">
                 enter early access
               </div>
@@ -42,13 +50,20 @@ export default function Home() {
       }
       {
         page === 2 &&
-          <div className="absolute top-0 left-0 bottom-0 right-0 flex flex-col justify-start items-center pt-32 gap-12">
-            <h1 className="text-white text-center text-5xl sm:text-8xl italic font-extralight"><span>Hyper</span><span className="text-[#75C9E1]">Fans</span></h1>
+          <div className="absolute top-0 left-0 bottom-0 right-0 flex flex-col justify-between items-center pt-32 pb-24">
+            <div style={{ width: '450px', height: '80px', position:"relative"}} className="scale-[50%] sm:scale-100"> 
+              <Image 
+                src="/images/logo.png" 
+                alt="My Image" 
+                layout="fill" 
+                objectFit="contain" 
+              />
+            </div>
             <div className="flex flex-col justify-center items-center px-4">
               <div onClick={() => setPage(1)} className="text-white cursor-pointer text-center text-lg hover:text-xl transition-all px-10 py-5 rounded-full inline-block">
                 Back 
               </div>
-              <div onClick={() => router.push("/signup")} className="min-w-[240px] text-center mb-8 text-white text-2xl py-3 rounded-full border cursor-pointer border-white inline-block bg-[#3BB4DA] hover:scale-[96%] transition-all hover:border-white hover:border-[3px] origin-center">
+              <div onClick={() => router.push("/signup")} className="min-w-[240px] text-center mb-3 text-white text-2xl py-3 rounded-full border cursor-pointer border-white inline-block bg-[#3BB4DA] hover:scale-[96%] transition-all hover:border-white hover:border-[3px] origin-center">
                 Create Account 
               </div>
               <div onClick={() => router.push("/login")} className="min-w-[240px] text-center text-white text-2xl py-3 rounded-full border cursor-pointer border-white inline-block bg-[#3BB4DA] hover:scale-[96%] transition-all hover:border-white hover:border-[3px] origin-center">

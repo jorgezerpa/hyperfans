@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 import { signIn } from 'next-auth/react'
 import axios from 'axios'
 import {BeatLoader} from "react-spinners"
+import Image from 'next/image'
 
 function RegisterPage() {
     const [loading, setLoading] = useState(false)
@@ -46,7 +47,7 @@ function RegisterPage() {
 
 
   return (
-    <div className='bg-black min-h-screen flex flex-col justify-center items-center'>
+    <div className='bg-black min-h-screen flex flex-col justify-center items-center overflow-x-hidden'>
         {
             loading && 
             <div className="flex justify-center items-center text-2xl text-white">
@@ -57,7 +58,14 @@ function RegisterPage() {
             !loading &&
                 <form onSubmit={handleSubmit} className='flex justify-center'>
                     <div className='flex flex-col gap-4 items-center'>
-                        <h1 className="text-white text-center text-4xl sm:text-6xl mb-6 italic font-extralight"><span>Hyper</span><span className="text-[#75C9E1]">Fans</span></h1>
+                        <div style={{ width: '450px', height: '80px', position:"relative"}} className="scale-[40%] sm:scale-[80%] mb-6"> 
+                          <Image 
+                            src="/images/logo.png" 
+                            alt="My Image" 
+                            layout="fill" 
+                            objectFit="contain" 
+                          />
+                        </div>
                         <input placeholder='Name' name={"name"} type="text" className="text-white text-center text-2xl px-10 py-3 rounded-full border  border-white inline-block bg-black w-[250px]" />
                         <input placeholder='Email' name={"email"} type="email" className="text-white text-center text-2xl px-10 py-3 rounded-full border  border-white inline-block bg-black w-[250px]" />
                         <input placeholder='age' name={"birthday"} type='number' className="text-white text-center text-2xl px-10 py-3 rounded-full border  border-white inline-block bg-black w-[250px]" />

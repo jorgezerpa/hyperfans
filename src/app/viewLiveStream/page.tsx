@@ -8,6 +8,7 @@ import {
 } from "@stream-io/video-react-sdk";
 import { useSearchParams } from "next/navigation";
 import axios from "axios";
+import Image from "next/image";
 
 const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY as string; //never change 
 
@@ -46,8 +47,17 @@ export default function App() {
   return (
     <div>
       <div className="bg-black h-screen">
-        <h1 className="text-white text-center text-5xl sm:text-8xl italic font-extralight pt-20"><span>Hyper</span><span className="text-[#75C9E1]">Fans</span></h1>
-
+        {/* <h1 className="text-white text-center text-5xl sm:text-8xl italic font-extralight pt-20"><span>Hyper</span><span className="text-[#75C9E1]">Fans</span></h1> */}
+        <div className="flex justify-center pt-20">
+          <div style={{ width: '450px', height: '80px', position:"relative"}} className="scale-[50%] sm:scale-100 shrink-0"> 
+            <Image 
+              src="/images/logo.png" 
+              alt="My Image" 
+              layout="fill" 
+              objectFit="contain" 
+            />
+          </div>
+        </div>
         {
           (user && client) &&
             <StreamVideo client={client} >

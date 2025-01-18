@@ -4,6 +4,7 @@ import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import {BeatLoader} from "react-spinners"
+import Image from 'next/image'
 
 function LoginPage() {
 
@@ -55,7 +56,14 @@ function LoginPage() {
             !loading &&
                 <form onSubmit={handleSubmit} className='flex justify-center items-center'>
                     <div className='flex flex-col items-center gap-5'>
-                        <h1 className="text-white text-center text-4xl sm:text-6xl mb-6 italic font-extralight"><span>Hyper</span><span className="text-[#75C9E1]">Fans</span></h1>
+                        <div style={{ width: '450px', height: '80px', position:"relative"}} className="scale-[40%] sm:scale-[80%] mb-6"> 
+                          <Image 
+                            src="/images/logo.png" 
+                            alt="My Image" 
+                            layout="fill" 
+                            objectFit="contain" 
+                          />
+                        </div>
                         <input placeholder='email' name={"email"} type="email" className="text-white text-center text-2xl px-10 py-3 rounded-full border  border-white inline-block bg-black w-[250px]" />
                         <input placeholder='password' name={"password"} type="password" className="text-white text-center text-2xl px-10 py-3 rounded-full border  border-white inline-block bg-black w-[250px]" />
                         <button className="min-w-[240px] text-center  mb-8 text-white text-2xl py-3 rounded-full border cursor-pointer border-white inline-block bg-[#3BB4DA] hover:scale-[96%] transition-all hover:border-white hover:border-[3px] origin-center w-[250px]">login</button>

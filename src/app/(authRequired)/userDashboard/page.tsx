@@ -11,6 +11,7 @@ import axios from "axios"
 
 import { ViewStreamsButton } from "@/components/ViewStreamButton"
 import {BeatLoader} from "react-spinners"
+import Image from "next/image"
 
 export default function Home() {
   const { data } = useSession()
@@ -103,7 +104,17 @@ export default function Home() {
               </div>
               <div onClick={async()=>await signOut({ callbackUrl:"/" })} className="text-white font-bold text-xl cursor-pointer">Logout</div>
             </div>
-            <h1 className="text-white text-center text-5xl sm:text-8xl italic font-extralight pt-20"><span>Hyper</span><span className="text-[#75C9E1]">Fans</span></h1>
+            
+            <div className="flex justify-center pt-20">
+              <div style={{ width: '450px', height: '80px', position:"relative"}} className="scale-[50%] sm:scale-100 shrink-0"> 
+                <Image 
+                  src="/images/logo.png" 
+                  alt="My Image" 
+                  layout="fill" 
+                  objectFit="contain" 
+                />
+              </div>
+            </div>
             <div className="flex flex-col justify-center items-center min-h-[600px]">
               {
                 loading && 
