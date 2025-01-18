@@ -31,8 +31,10 @@ export default function Home() {
         ref={videoRef} 
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover" 
-        src="/videos/hero-background.mp4" 
-      />
+        // src="/videos/hero-background.mp4" 
+      >
+         <source src="/videos/hero-background.mp4" type="video/mp4"/>
+      </video>
       {
         page === 1 &&
             <div className="absolute top-0 left-0 bottom-0 right-0 flex flex-col items-center justify-start gap-8 sm:gap-0 sm:justify-between py-32">
