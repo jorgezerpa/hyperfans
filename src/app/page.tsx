@@ -29,7 +29,7 @@ export default function Home() {
         loop 
         muted 
         ref={videoRef} 
-        playsInline
+        // playsInline
         className="absolute top-0 left-0 w-full h-full object-cover" 
         // src="/videos/hero-background.mp4" 
       >
