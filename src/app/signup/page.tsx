@@ -2,6 +2,7 @@
 import React, {useState} from 'react'
 import { signIn } from 'next-auth/react'
 import axios from 'axios'
+import {BeatLoader} from "react-spinners"
 
 function RegisterPage() {
     const [loading, setLoading] = useState(false)
@@ -49,20 +50,21 @@ function RegisterPage() {
         {
             loading && 
             <div className="flex justify-center items-center text-2xl text-white">
-                    Loading...
+                    <BeatLoader size={20} color="white" speedMultiplier={.5} />
             </div>
         }
         {
             !loading &&
                 <form onSubmit={handleSubmit} className='flex justify-center'>
-                    <div className='flex flex-col gap-4'>
+                    <div className='flex flex-col gap-4 items-center'>
+                        <h1 className="text-white text-center text-4xl sm:text-6xl mb-6 italic font-extralight"><span>Hyper</span><span className="text-[#75C9E1]">Fans</span></h1>
                         <input placeholder='Name' name={"name"} type="text" className="text-white text-center text-2xl px-10 py-3 rounded-full border  border-white inline-block bg-black w-[250px]" />
                         <input placeholder='Email' name={"email"} type="email" className="text-white text-center text-2xl px-10 py-3 rounded-full border  border-white inline-block bg-black w-[250px]" />
                         <input placeholder='age' name={"birthday"} type='number' className="text-white text-center text-2xl px-10 py-3 rounded-full border  border-white inline-block bg-black w-[250px]" />
                         <input placeholder='password' name={"password"} type="password" className="text-white text-center text-2xl px-10 py-3 rounded-full border  border-white inline-block bg-black w-[250px]" />
                         <input placeholder='address' name={"address"} className="text-white text-center text-2xl px-10 py-3 rounded-full border  border-white inline-block bg-black w-[250px]" />
                         
-                        <button className="text-center mb-8 text-white text-2xl py-3 rounded-full border cursor-pointer border-white inline-block bg-[#3BB4DA] hover:scale-[96%] transition-all hover:border-white hover:border-[3px] origin-center">Register</button>
+                        <button className="text-center mb-8 text-white text-2xl py-3 rounded-full border cursor-pointer border-white inline-block bg-[#3BB4DA] hover:scale-[96%] transition-all hover:border-white hover:border-[3px] origin-center w-[250px]">Register</button>
                     </div>
                 </form>
         }

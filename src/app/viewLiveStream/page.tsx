@@ -46,7 +46,7 @@ export default function App() {
   return (
     <div>
       <div className="bg-black h-screen">
-        <h1 className="text-white text-center pt-20 font-bold text-3xl sm:text-4xl pb-10">Hyperfans</h1>
+        <h1 className="text-white text-center text-5xl sm:text-8xl italic font-extralight pt-20"><span>Hyper</span><span className="text-[#75C9E1]">Fans</span></h1>
 
         {
           (user && client) &&

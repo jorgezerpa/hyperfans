@@ -42,9 +42,9 @@ export default function Home() {
       }
       {
         page === 2 &&
-          <div className="absolute top-0 left-0 bottom-0 right-0">
-            <h1 className="text-white text-center pt-20 font-bold text-3xl sm:text-4xl pb-10">Hyperfans</h1>
-            <div className="flex flex-col justify-center items-center min-h-[600px] px-4">
+          <div className="absolute top-0 left-0 bottom-0 right-0 flex flex-col justify-start items-center pt-32 gap-12">
+            <h1 className="text-white text-center text-5xl sm:text-8xl italic font-extralight"><span>Hyper</span><span className="text-[#75C9E1]">Fans</span></h1>
+            <div className="flex flex-col justify-center items-center px-4">
               <div onClick={() => setPage(1)} className="text-white cursor-pointer text-center text-lg hover:text-xl transition-all px-10 py-5 rounded-full inline-block">
                 Back 
               </div>

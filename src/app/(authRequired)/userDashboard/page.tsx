@@ -10,7 +10,7 @@ import { WALLET_TO_PAY, USDC_CONTRACT } from "@/constants/web3"
 import axios from "axios"
 
 import { ViewStreamsButton } from "@/components/ViewStreamButton"
-
+import {BeatLoader} from "react-spinners"
 
 export default function Home() {
   const { data } = useSession()
@@ -103,12 +103,12 @@ export default function Home() {
               </div>
               <div onClick={async()=>await signOut({ callbackUrl:"/" })} className="text-white font-bold text-xl cursor-pointer">Logout</div>
             </div>
-            <h1 className="text-white text-center pt-20 font-bold text-3xl sm:text-4xl pb-10">Hyperfans</h1>
+            <h1 className="text-white text-center text-5xl sm:text-8xl italic font-extralight pt-20"><span>Hyper</span><span className="text-[#75C9E1]">Fans</span></h1>
             <div className="flex flex-col justify-center items-center min-h-[600px]">
               {
                 loading && 
                   <div className="flex justify-center items-center text-2xl text-white">
-                    Loading...
+                    <BeatLoader size={20} color="white" speedMultiplier={.5} />
                   </div>
               }
               {

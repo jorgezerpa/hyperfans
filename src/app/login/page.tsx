@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
+import {BeatLoader} from "react-spinners"
 
 function LoginPage() {
 
@@ -47,16 +48,17 @@ function LoginPage() {
         {
             loading &&
             <div className="flex justify-center items-center text-2xl text-white">
-                Loading...
+                <BeatLoader size={20} color="white" speedMultiplier={.5} />
             </div>
         }
         {
             !loading &&
-                <form onSubmit={handleSubmit} className='flex justify-center'>
-                    <div className='flex flex-col gap-5'>
+                <form onSubmit={handleSubmit} className='flex justify-center items-center'>
+                    <div className='flex flex-col items-center gap-5'>
+                        <h1 className="text-white text-center text-4xl sm:text-6xl mb-6 italic font-extralight"><span>Hyper</span><span className="text-[#75C9E1]">Fans</span></h1>
                         <input placeholder='email' name={"email"} type="email" className="text-white text-center text-2xl px-10 py-3 rounded-full border  border-white inline-block bg-black w-[250px]" />
                         <input placeholder='password' name={"password"} type="password" className="text-white text-center text-2xl px-10 py-3 rounded-full border  border-white inline-block bg-black w-[250px]" />
-                        <button className="min-w-[240px] text-center mb-8 text-white text-2xl py-3 rounded-full border cursor-pointer border-white inline-block bg-[#3BB4DA] hover:scale-[96%] transition-all hover:border-white hover:border-[3px] origin-center">login</button>
+                        <button className="min-w-[240px] text-center  mb-8 text-white text-2xl py-3 rounded-full border cursor-pointer border-white inline-block bg-[#3BB4DA] hover:scale-[96%] transition-all hover:border-white hover:border-[3px] origin-center w-[250px]">login</button>
                     </div>
                 </form>
         }

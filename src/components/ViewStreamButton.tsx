@@ -45,11 +45,11 @@ export function ViewStreamsButton() {
             <div>
                 {
                     (calls[0]?.state === "active") &&
-                    <button type="button" onClick={()=>{router.push(`/viewLiveStream?livestream-id=${calls[0]?.callId}`)}} className="text-white text-3xl px-10 py-5 rounded-full border cursor-pointer border-white inline-block">JOIN STREAM</button>
+                    <button type="button" onClick={()=>{router.push(`/viewLiveStream?livestream-id=${calls[0]?.callId}`)}} className="text-white text-2xl sm:text-3xl px-10 py-5 rounded-full border cursor-pointer border-white inline-block">JOIN STREAM</button>
                 }
                 {
                     (calls[0]?.state !== "active") &&
-                    <button type="button" className="text-white text-3xl px-10 py-5 rounded-full border border-white inline-block">No Actual Stream</button>
+                    <button type="button" className="text-white text-2xl sm:text-3xl px-10 py-5 rounded-full border border-white inline-block">No Actual Stream</button>
                 }
             </div>            
     )
