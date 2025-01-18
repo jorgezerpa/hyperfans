@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react"
 
 import { useRouter } from "next/navigation"
 import Image from "next/image"
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Home() {
   const router = useRouter()
@@ -72,6 +73,12 @@ export default function Home() {
             </div>
           </div>
       }
+
+      <div className="absolute top-6 right-6 cursor-pointer">
+        <a href="https://x.com/HyperFans_x" target="_blank">
+          <FaXTwitter color="white" size={40} />
+        </a>
+      </div>
     </div>
   )
 }
